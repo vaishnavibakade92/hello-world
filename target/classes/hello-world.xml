@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="bacb3ce6-9042-4fa9-9a09-8eb45fb8b747" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="hello-worldFlow" doc:id="5f0a4bef-e4ab-4292-8a38-d7300e28b5b1" >
+		<http:listener doc:name="Listener" doc:id="1dbcd114-80f7-4d0d-8dc6-e78937c08aff" config-ref="HTTP_Listener_config" path="/Hello"/>
+		<set-variable value="#[attributes.queryParams.Name]" doc:name="Set Name Variable" doc:id="00404004-4445-4635-8dc1-1f0098749943" variableName="NameVar"/>
+		<set-variable value="#[attributes.queryParams.SName]" doc:name="Set SN Variable" doc:id="41d4e813-cfe8-4bf9-befc-4929ac1fc9d6" variableName="SNameVar"/>
+		<set-payload value='#["Welcome " ++ vars.NameVar as String ++ " " ++ vars.SNameVar as String ++ ", to Mulesoft"]' doc:name="Greeting Message" doc:id="2295579e-bbc6-4f47-a0d5-cb265da666ff" />
+		<logger level="INFO" doc:name="Log Greeting Message" doc:id="6226e379-53ca-466a-8c89-eba99ad66163" message="#[payload]"/>
+	</flow>
+</mule>
