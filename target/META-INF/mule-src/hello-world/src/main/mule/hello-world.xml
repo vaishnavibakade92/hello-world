@@ -12,6 +12,7 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 		<set-variable value="#[attributes.queryParams.Name]" doc:name="Set Name Variable" doc:id="00404004-4445-4635-8dc1-1f0098749943" variableName="NameVar"/>
 		<set-variable value="#[attributes.queryParams.SName]" doc:name="Set SN Variable" doc:id="41d4e813-cfe8-4bf9-befc-4929ac1fc9d6" variableName="SNameVar"/>
 		<set-payload value='#["Welcome " ++ vars.NameVar as String ++ " " ++ vars.SNameVar as String ++ ", to Mulesoft"]' doc:name="Greeting Message" doc:id="2295579e-bbc6-4f47-a0d5-cb265da666ff" />
+		<logger level="INFO" doc:name="Logger" doc:id="12845716-7f98-4411-ae26-cfe649da60d8" message="DUMMY"/>
 		<logger level="INFO" doc:name="Log Greeting Message" doc:id="6226e379-53ca-466a-8c89-eba99ad66163" message="#[payload]"/>
 	</flow>
 </mule>
